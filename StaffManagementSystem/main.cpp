@@ -2,12 +2,21 @@
 using namespace std;
 #include "workerManager.h"
 #include "employee.h"
+#include "manager.h"
+#include "boss.h"
 
 int main() {
 	Worker* worker = NULL;
 	worker = new Employee(1, "大雄", 3);
+	// 多态
 	worker->showInfo();
-
+	delete worker;
+	worker = new Manager(2, "经理王", 2);
+	worker->showInfo();
+	delete worker;
+	worker = new Boss(3, "马云", 1);
+	worker->showInfo();
+	delete worker;
 	//// 实例化管理者对象
 	//WorkerManager wm;
 	//// 选择值
