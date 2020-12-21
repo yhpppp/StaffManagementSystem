@@ -4,6 +4,11 @@ using namespace std;
 
 class WorkerManager
 {
+public:
 	WorkerManager();
+
+	// 展示菜单
+	void showMenu();
+
 	~WorkerManager();
 };
