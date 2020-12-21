@@ -19,6 +19,12 @@ void WorkerManager::showMenu() {
 	cout << endl;
 }
 
+void WorkerManager::exitSystem() {
+	cout << "系统已退出,欢迎下次使用!" << endl;
+	system("pause");
+	exit(0);
+}
+
 WorkerManager::~WorkerManager() {
 
 }
