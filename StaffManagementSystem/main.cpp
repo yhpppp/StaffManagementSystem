@@ -49,6 +49,7 @@ int main() {
 			break;
 			// 修改职工
 		case 4:
+			wm.modEmp();
 			break;
 			// 查找职工
 		case 5:

@@ -35,6 +35,8 @@ public:
 	// 删除职工
 	void delEmp();
 
+	// 修改职工
+	void modEmp();
 	int isExistEmp(int id);
 	~WorkerManager();
 
