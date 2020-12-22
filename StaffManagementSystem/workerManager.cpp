@@ -4,10 +4,51 @@
 #include "boss.h"
 
 WorkerManager::WorkerManager() {
-	// 初始化人数
-	this->m_EmpNum = 0;
-	//初始化数组指针
-	this->m_EmpArray = NULL;
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);
+	// 文件不存在时
+	if (!ifs.is_open()) {
+		// 初始化人数
+		this->m_EmpNum = 0;
+		// 初始化数组指针
+		this->m_EmpArray = NULL;
+		// 存储数据文件为空
+		this->m_FileIsEmpty = true;
+		ifs.close();
+		cout << "文件不存在时" << endl;
+		return;
+	}
+	// 文件存在但数据为空时
+	char ch;
+	ifs >> ch;
+	// 判断为空
+	if (ifs.eof()) {
+		// 初始化人数
+		this->m_EmpNum = 0;
+		// 初始化数组指针
+		this->m_EmpArray = NULL;
+		// 存储数据文件为空
+		this->m_FileIsEmpty = true;
+		ifs.close();
+		cout << "文件存在但数据为空时" << endl;
+		return;
+	}
+	// 文件存在数据也存在时
+	int num = this->getEmpNum();
+	cout << "职工个数为: " << num << endl;
+	this->m_EmpNum = num;
+	// 根据职工数创建数组
+	this->m_EmpArray = new Worker * [this->m_EmpNum];
+	// 初始化职工
+	this->initEmp();
+
+	//test
+	for (int i = 0; i < m_EmpNum; i++)
+	{
+		cout << "职工号: " << m_EmpArray[i]->m_Id
+			<< " 职工姓名： " << this->m_EmpArray[i]->m_Name
+			<< " 部门编号： " << this->m_EmpArray[i]->m_DeptId << endl;
+	}
 }
 
 void WorkerManager::showMenu() {
@@ -93,6 +134,8 @@ void WorkerManager::addEmp() {
 		this->m_EmpNum = newSize;
 
 		this->saveFile();
+		// 改变空文件标记
+		this->m_FileIsEmpty = false;
 
 		cout << "成功添加" << addNum << "名新职工!" << endl;
 	}
@@ -103,7 +146,7 @@ void WorkerManager::addEmp() {
 	system("cls");
 }
 
-void WorkerManager::saveFile(){
+void WorkerManager::saveFile() {
 	// 创建输入对象
 	ofstream ofs;
 	ofs.open(FILENAME, ios::out);
@@ -114,6 +157,52 @@ void WorkerManager::saveFile(){
 	}
 	ofs.close();
 }
+
+int WorkerManager::getEmpNum() {
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);
+
+	int id;
+	string name;
+	int dId;
+
+	int num = 0;
+
+	while (ifs >> id && ifs >> name && ifs >> dId)
+	{
+		num++;
+	}
+	ifs.close();
+	return num;
+}
+
+void WorkerManager::initEmp() {
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);
+
+	int id;
+	string name;
+	int dId;
+
+	int index = 0;
+	while (ifs >> id && ifs >> name && ifs >> dId)
+	{
+		Worker* worker = NULL;
+		if (dId == 1) {
+			worker = new Employee(id, name, dId);
+		}
+		else if (dId == 2) {
+			worker = new Manager(id, name, dId);
+
+		}
+		else if (dId == 3) {
+			worker = new Boss(id, name, dId);
+		}
+		this->m_EmpArray[index] = worker;
+		index++;
+	}
+}
+
 WorkerManager::~WorkerManager() {
 	if (this->m_EmpArray != NULL) {
 		delete[] this->m_EmpArray;

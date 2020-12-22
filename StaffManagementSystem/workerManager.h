@@ -23,11 +23,18 @@ public:
 	// 保存数据
 	void saveFile();
 
+	// 获取统计人数
+	int getEmpNum();
+
+	// 初始化职员
+	void initEmp();
+
 	~WorkerManager();
 
 	// 记录职工人数
 	int m_EmpNum;
 	// 职工数组指针
 	Worker** m_EmpArray;
-
+	// 存储数据文件是否为空
+	bool m_FileIsEmpty;
 };
