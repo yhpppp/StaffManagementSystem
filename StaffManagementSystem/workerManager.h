@@ -32,6 +32,10 @@ public:
 	// 显示员工
 	void showEmp();
 
+	// 删除职工
+	void delEmp();
+
+	int isExistEmp(int id);
 	~WorkerManager();
 
 	// 记录职工人数

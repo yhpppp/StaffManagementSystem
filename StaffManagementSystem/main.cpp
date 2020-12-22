@@ -45,6 +45,7 @@ int main() {
 			break;
 			// 删除职工
 		case 3:
+			wm.delEmp();
 			break;
 			// 修改职工
 		case 4:
