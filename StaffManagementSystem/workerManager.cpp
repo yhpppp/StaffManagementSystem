@@ -2,7 +2,7 @@
 #include "employee.h"
 #include "manager.h"
 #include "boss.h"
-
+#include <string>
 WorkerManager::WorkerManager() {
 	ifstream ifs;
 	ifs.open(FILENAME, ios::in);
@@ -15,7 +15,7 @@ WorkerManager::WorkerManager() {
 		// 存储数据文件为空
 		this->m_FileIsEmpty = true;
 		ifs.close();
-		cout << "文件不存在时" << endl;
+		//cout << "文件不存在时" << endl;
 		return;
 	}
 	// 文件存在但数据为空时
@@ -30,12 +30,12 @@ WorkerManager::WorkerManager() {
 		// 存储数据文件为空
 		this->m_FileIsEmpty = true;
 		ifs.close();
-		cout << "文件存在但数据为空时" << endl;
+		//cout << "文件存在但数据为空时" << endl;
 		return;
 	}
 	// 文件存在数据也存在时
 	int num = this->getEmpNum();
-	cout << "职工个数为: " << num << endl;
+	//cout << "职工个数为: " << num << endl;
 	this->m_EmpNum = num;
 	// 根据职工数创建数组
 	this->m_EmpArray = new Worker * [this->m_EmpNum];
@@ -43,12 +43,12 @@ WorkerManager::WorkerManager() {
 	this->initEmp();
 
 	//test
-	for (int i = 0; i < m_EmpNum; i++)
-	{
-		cout << "职工号: " << m_EmpArray[i]->m_Id
-			<< " 职工姓名： " << this->m_EmpArray[i]->m_Name
-			<< " 部门编号： " << this->m_EmpArray[i]->m_DeptId << endl;
-	}
+	//for (int i = 0; i < m_EmpNum; i++)
+	//{
+	//	cout << "职工号: " << m_EmpArray[i]->m_Id
+	//		<< " 职工姓名： " << this->m_EmpArray[i]->m_Name
+	//		<< " 部门编号： " << this->m_EmpArray[i]->m_DeptId << endl;
+	//}
 }
 
 void WorkerManager::showMenu() {
@@ -201,6 +201,21 @@ void WorkerManager::initEmp() {
 		this->m_EmpArray[index] = worker;
 		index++;
 	}
+}
+
+void WorkerManager::showEmp() {
+	if (this->m_FileIsEmpty) {
+		cout << "暂无查询数据" << endl;
+	}
+	else {
+		for (int i = 0; i < m_EmpNum; i++)
+		{
+			// 多态调用
+			this->m_EmpArray[i]->showInfo();
+		}
+	}
+	system("pause");
+	system("cls");
 }
 
 WorkerManager::~WorkerManager() {

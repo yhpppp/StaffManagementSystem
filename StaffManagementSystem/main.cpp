@@ -4,6 +4,7 @@ using namespace std;
 //#include "employee.h"
 //#include "manager.h"
 //#include "boss.h"
+#include <string>
 
 int main() {
 	//Worker* worker = NULL;
@@ -40,6 +41,7 @@ int main() {
 			break;
 			// 显示职工
 		case 2:
+			wm.showEmp();
 			break;
 			// 删除职工
 		case 3:

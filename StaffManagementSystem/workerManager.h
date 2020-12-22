@@ -29,6 +29,9 @@ public:
 	// 初始化职员
 	void initEmp();
 
+	// 显示员工
+	void showEmp();
+
 	~WorkerManager();
 
 	// 记录职工人数
