@@ -1,6 +1,9 @@
 #pragma once // 防止头文件重复
 #include <iostream>
 #include "worker.h"
+#include <fstream>
+#define	FILENAME "empFile.txt"
+
 using namespace std;
 
 class WorkerManager
@@ -16,6 +19,9 @@ public:
 
 	// 添加职工
 	void addEmp();
+
+	// 保存数据
+	void saveFile();
 
 	~WorkerManager();
 
