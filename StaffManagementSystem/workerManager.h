@@ -37,6 +37,10 @@ public:
 
 	// 修改职工
 	void modEmp();
+
+	// 查找职工
+	void findEmp();
+
 	int isExistEmp(int id);
 	~WorkerManager();
 

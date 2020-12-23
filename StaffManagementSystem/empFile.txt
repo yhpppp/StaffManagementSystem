@@ -1,1 +1,3 @@
-2 s 3
+1 mr.wang 2
+2 mr.wang 3
+3 whh 1

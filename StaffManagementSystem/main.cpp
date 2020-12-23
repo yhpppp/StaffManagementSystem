@@ -53,6 +53,7 @@ int main() {
 			break;
 			// 查找职工
 		case 5:
+			wm.findEmp();
 			break;
 			// 排序职工
 		case 6:
