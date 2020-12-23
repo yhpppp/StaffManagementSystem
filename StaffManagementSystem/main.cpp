@@ -57,6 +57,7 @@ int main() {
 			break;
 			// 排序职工
 		case 6:
+			wm.sortEmp();
 			break;
 			// 清空文档
 		case 7:

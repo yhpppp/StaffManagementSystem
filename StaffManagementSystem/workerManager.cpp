@@ -372,6 +372,48 @@ void WorkerManager::findEmp() {
 	system("cls");
 }
 
+void WorkerManager::sortEmp() {
+	if (this->m_FileIsEmpty) {
+		cout << "文件不存在或记录为空!" << endl;
+		system("pause");
+		system("cls");
+	}
+	else {
+		cout << "请选择排序方式: " << endl;
+		cout << "1、按职工号进行升序" << endl;
+		cout << "2、按职工号进行降序" << endl;
+		int select = 0;
+		cin >> select;
+
+		for (int i = 0; i < m_EmpNum; i++) {
+			int minOrMax = i;
+			for (int j = i+1; j < m_EmpNum; j++)
+			{
+				if (select == 1) {
+					if (m_EmpArray[minOrMax]->m_Id > m_EmpArray[j]->m_Id) {
+						minOrMax = j;
+					}
+				}
+				else if (select == 2) {
+					if (m_EmpArray[minOrMax]->m_Id < m_EmpArray[j]->m_Id) {
+						minOrMax = j;
+					}
+				}
+			}
+
+			if (i != minOrMax) {
+				Worker* temp = m_EmpArray[i];
+				m_EmpArray[i] = m_EmpArray[minOrMax];
+				m_EmpArray[minOrMax] = temp;
+			}
+		}
+
+		cout << "排序成功!" << endl;
+		//this->saveFile();
+		this->showEmp();
+	}
+}
+
 WorkerManager::~WorkerManager() {
 	if (this->m_EmpArray != NULL) {
 		delete[] this->m_EmpArray;
