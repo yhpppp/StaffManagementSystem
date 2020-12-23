@@ -44,6 +44,9 @@ public:
 	// 排序职工
 	void sortEmp();
 
+	// 清空数据
+	void clearEmp();
+
 	int isExistEmp(int id);
 	~WorkerManager();
 

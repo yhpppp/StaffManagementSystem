@@ -61,6 +61,7 @@ int main() {
 			break;
 			// 清空文档
 		case 7:
+			wm.clearEmp();
 			break;
 		default:
 			break;

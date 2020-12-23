@@ -1,5 +1,0 @@
-8 w 1
-6 e 2
-3 whh 1
-2 mr.wang 3
-1 mr.wang 2
